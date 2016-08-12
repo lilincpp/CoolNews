@@ -19,15 +19,23 @@
             android:value="CoolNews.db"/>
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="1"/>
+            android:value="2"/>
+
 
         <activity android:name=".ui.home.HomeActivity">
+        </activity>
+
+        <activity android:name=".ui.welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:label=""
+            android:name=".ui.detail.DetailActivity"/>
     </application>
 
 </manifest>

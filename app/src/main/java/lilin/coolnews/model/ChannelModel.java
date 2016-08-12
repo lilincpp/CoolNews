@@ -3,6 +3,7 @@ package lilin.coolnews.model;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 
 import java.util.List;
 
@@ -11,28 +12,28 @@ import java.util.List;
  */
 public class ChannelModel {
 
-    String showapi_res_code;
+    int showapi_res_code;
     String showapi_res_error;
     Body showapi_res_body;
 
-    static class Body {
-        String totalNum;
-        String ret_code;
+    public static class Body {
+        int totalNum;
+        int ret_code;
         List<Channel> channelList;
 
-        public String getTotalNum() {
+        public int getTotalNum() {
             return totalNum;
         }
 
-        public void setTotalNum(String totalNum) {
+        public void setTotalNum(int totalNum) {
             this.totalNum = totalNum;
         }
 
-        public String getRet_code() {
+        public int getRet_code() {
             return ret_code;
         }
 
-        public void setRet_code(String ret_code) {
+        public void setRet_code(int ret_code) {
             this.ret_code = ret_code;
         }
 
@@ -46,10 +47,11 @@ public class ChannelModel {
     }
 
     @Table(name = "Channel")
-    static class Channel extends Model{
+    public static class Channel extends Model {
+
         @Column(name = "channel_id")
         String channelId;
-        @Column(name = "name")
+        @Column(name = "channel_name")
         String name;
 
         public String getChannelId() {
@@ -67,13 +69,19 @@ public class ChannelModel {
         public void setName(String name) {
             this.name = name;
         }
+
+        public static List<Channel> getAll() {
+            return new Select().from(Channel.class).execute();
+        }
+
+
     }
 
-    public String getShowapi_res_code() {
+    public int getShowapi_res_code() {
         return showapi_res_code;
     }
 
-    public void setShowapi_res_code(String showapi_res_code) {
+    public void setShowapi_res_code(int showapi_res_code) {
         this.showapi_res_code = showapi_res_code;
     }
 

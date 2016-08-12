@@ -1,26 +1,23 @@
 package lilin.coolnews.ui.home;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lilin.coolnews.Base.BaseActivity;
 import lilin.coolnews.R;
-import lilin.coolnews.utils.RequestUtil;
+import lilin.coolnews.model.ChannelModel;
 
 public class HomeActivity extends BaseActivity {
     private static final String TAG = "HomeActivity";
 
-    @BindView(R.id.toolbar)
-    Toolbar mToolBar;
     @BindView(R.id.tablayout)
     TabLayout mTablayout;
     @BindView(R.id.appbar)
@@ -35,18 +32,17 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, RequestUtil.getNewsType(), new Response
-                .Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setTitle(getString(R.string.app_name));
+        setSupportActionBar(toolbar);
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
+        List<ChannelModel.Channel> channelList = ChannelModel.Channel.getAll();
+        HomeViewPagerAdapter homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(), channelList);
+        mViewPager.setAdapter(homeViewPagerAdapter);
+        mTablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        mTablayout.setupWithViewPager(mViewPager);
 
-            }
-        });
     }
 
 
