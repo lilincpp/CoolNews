@@ -31,7 +31,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     }
 
     public void update(List<LNews> newses) {
-        mNewses.addAll(newses);
+        mNewses.addAll(0,newses);
         notifyDataSetChanged();
     }
 

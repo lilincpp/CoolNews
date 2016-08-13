@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:padding="16dp"
+        android:textStyle="bold"
+        android:text="广州古建筑玉虚宫屋顶被先，专家称过多破相"
+        android:textColor="@color/news.content"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_below="@+id/tv_title"
+        android:id="@+id/tv_source"
+        android:text="网易体育"
+       android:layout_marginStart="16dp"
+        android:textColor="@color/news.gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/news.gray"
+        android:layout_toEndOf="@+id/tv_source"
+        android:layout_alignBottom="@+id/tv_source"
+        android:layout_width="wrap_content"
+        android:text="2016"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_below="@+id/tv_source"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/news.gray"/>
+
+</RelativeLayout>

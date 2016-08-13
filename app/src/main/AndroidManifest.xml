@@ -22,7 +22,8 @@
             android:value="2"/>
 
 
-        <activity android:name=".ui.home.HomeActivity">
+        <activity android:name=".ui.home.HomeActivity"
+            android:screenOrientation="portrait">
         </activity>
 
         <activity android:name=".ui.welcome.WelcomeActivity">

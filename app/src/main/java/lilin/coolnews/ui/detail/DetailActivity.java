@@ -5,15 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import lilin.coolnews.Base.BaseActivity;
 import lilin.coolnews.R;
-import lilin.coolnews.model.LContent;
 import lilin.coolnews.model.LNews;
 
 /**
@@ -23,8 +20,7 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
 
     private static final String TAG = "DetailActivity";
 
-    @BindView(R.id.tv_title)
-    TextView mTvTitle;
+
     @BindView(R.id.rv_news_content)
     RecyclerView mRvNewsContent;
 
@@ -49,15 +45,14 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
         ButterKnife.bind(this);
 
         mLNews = (LNews) getIntent().getSerializableExtra("news");
-        mTvTitle.setText(mLNews.getmTitle());
-        Log.e(TAG, "onCreate: " + mLNews.toString());
-        Log.e(TAG, "======================================");
+//        Log.e(TAG, "onCreate: " + mLNews.toString());
+//        Log.e(TAG, "======================================");
+//
+//        for (LContent lContent : mLNews.getmContents()) {
+//            Log.e(TAG, "onCreate: " + lContent.toString());
+//        }
 
-        for (LContent lContent : mLNews.getmContents()) {
-            Log.e(TAG, "onCreate: " + lContent.toString());
-        }
-
-        mDetailAdapter = new DetailAdapter(this, mLNews.getmContents());
+        mDetailAdapter = new DetailAdapter(this,mLNews );
         mRvNewsContent.setLayoutManager(new LinearLayoutManager(this));
         mRvNewsContent.setAdapter(mDetailAdapter);
 

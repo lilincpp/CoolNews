@@ -8,8 +8,8 @@ public class AppConfig {
     private AppConfig() {
     }
 
-    //注意配置needContent=1(需要正文)，needAllList=0(不需要这个，这个属性会造成json格式错误)
-    //http://route.showapi.com/109-35?showapi_appid=23036&channelId=&channelName=&title=&page=&needContent=1&needHtml=&needAllList=0
+
+    //http://route.showapi.com/109-35?showapi_appid=23036&channelId=&channelName=&title=&page=&needContent=0&needHtml=&needAllList=1
     // &showapi_sign=abfe1d1679c245ac8fecfb1410177b45
 
     //http://route.showapi.com/109-34?showapi_appid=23036&showapi_sign=abfe1d1679c245ac8fecfb1410177b45

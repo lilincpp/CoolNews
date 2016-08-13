@@ -17,6 +17,7 @@ import java.util.List;
 
 import lilin.coolnews.R;
 import lilin.coolnews.model.LContent;
+import lilin.coolnews.model.LNews;
 
 /**
  * Created by lilin on 2016/8/12.
@@ -26,11 +27,13 @@ public class DetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private static final int TYPE_TEXT = 0;
     private static final int TYPE_IMG = 1;
+    private static final int TYPE_HEAD=2;
 
     private List<LContent> mLContents;
     private ImageLoader mImageLoader;
+    private LNews mLNews;
 
-    public DetailAdapter(Context context, List<LContent> lContents) {
+    public DetailAdapter(Context context, LNews lNews) {
         mImageLoader = new ImageLoader(Volley.newRequestQueue(context), new ImageLoader.ImageCache() {
             @Override
             public Bitmap getBitmap(String url) {
@@ -42,8 +45,8 @@ public class DetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             }
         });
-
-        mLContents = lContents;
+        mLNews=lNews;
+        mLContents = lNews.getmContents();
 
     }
 
@@ -52,12 +55,18 @@ public class DetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view;
-        if (viewType == TYPE_IMG) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_img, parent, false);
-            return new ImgViewHolder(view);
-        } else {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text, parent, false);
-            return new TextViewHolder(view);
+        switch (viewType){
+            case TYPE_HEAD:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_head, parent, false);
+                return new HeadViewHolder(view);
+            case TYPE_IMG:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_img, parent, false);
+                return new ImgViewHolder(view);
+            case TYPE_TEXT:
+                view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_text, parent, false);
+                return new TextViewHolder(view);
+            default:
+                return null;
         }
     }
 
@@ -65,32 +74,42 @@ public class DetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof TextViewHolder) {
             TextViewHolder textViewHolder = (TextViewHolder) holder;
-            Log.e(TAG, "onBindViewHolder: TEXT->" + mLContents.get(position).getmValue());
-            Log.e(TAG, "onBindViewHolder: tv->" + (textViewHolder.tv == null));
-            textViewHolder.tv.setText(mLContents.get(position).getmValue());
+//            Log.e(TAG, "onBindViewHolder: TEXT->" + mLContents.get(position).getmValue());
+//            Log.e(TAG, "onBindViewHolder: tv->" + (textViewHolder.tv == null));
+            textViewHolder.tv.setText(mLContents.get(position-1).getmValue());
         } else if (holder instanceof ImgViewHolder) {
             ImgViewHolder imgViewHolder = (ImgViewHolder) holder;
-            Log.e(TAG, "onBindViewHolder: imge->" + (imgViewHolder.img == null));
-//            ImageLoader.ImageListener imageListener = ImageLoader.getImageListener(imgViewHolder.img, R.drawable.ic_default, R.drawable
-//                    .ic_load_error);
-//            mImageLoader.get(mLContents.get(position).getmValue(), imageListener);
+            Log.e(TAG, "onBindViewHolder: IMG->" + mLContents.get(position-1).getmValue());
+            ImageLoader.ImageListener imageListener = ImageLoader.getImageListener(imgViewHolder.img, R.drawable.ic_default, R.drawable
+                    .ic_load_error);
+            mImageLoader.get(mLContents.get(position-1).getmValue(), imageListener);
+        } else if(holder instanceof HeadViewHolder){
+            HeadViewHolder headViewHolder= (HeadViewHolder) holder;
+            headViewHolder.tvTitle.setText(mLNews.getmTitle());
+            headViewHolder.tvSource.setText(mLNews.getmSource());
+            headViewHolder.tvDate.setText(mLNews.getmDate());
+
         }
     }
 
     @Override
     public int getItemCount() {
 
-        return mLContents.size();
+        return mLContents.size()+1;
     }
 
     @Override
     public int getItemViewType(int position) {
-        LContent lContent = mLContents.get(position);
-        if (lContent.getmType() == LContent.TYPE.IMG) {
-            return TYPE_IMG;
-        } else {
-            return TYPE_TEXT;
-        }
+       if(position==0){
+           return TYPE_HEAD;
+       }else {
+           LContent lContent = mLContents.get(position-1);
+           if (lContent.getmType() == LContent.TYPE.IMG) {
+               return TYPE_IMG;
+           } else {
+               return TYPE_TEXT;
+           }
+       }
     }
 
     static class TextViewHolder extends RecyclerView.ViewHolder {
@@ -108,6 +127,17 @@ public class DetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         public ImgViewHolder(View itemView) {
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.iv);
+        }
+    }
+
+    static class HeadViewHolder extends RecyclerView.ViewHolder{
+        TextView tvTitle,tvSource,tvDate;
+        public HeadViewHolder(View itemView) {
+            super(itemView);
+            tvTitle= (TextView) itemView.findViewById(R.id.tv_title);
+            tvSource= (TextView) itemView.findViewById(R.id.tv_source);
+            tvDate= (TextView) itemView.findViewById(R.id.tv_date);
+
         }
     }
 }

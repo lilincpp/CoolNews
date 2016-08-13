@@ -4,9 +4,8 @@
                 android:id="@+id/lay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
+                android:background="@drawable/selector_click"
                 android:layout_marginTop="8dp"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:elevation="2dp"
                 android:padding="8dp">
 

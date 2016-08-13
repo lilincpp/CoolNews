@@ -59,7 +59,7 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
 
     @Override
     public void loadFail() {
-        mPb.setVisibility(View.GONE);
+        mPb.setVisibility(View.INVISIBLE);
         mBtnReload.setVisibility(View.VISIBLE);
         mTip.setText(getString(R.string.welcome_erro_load));
     }

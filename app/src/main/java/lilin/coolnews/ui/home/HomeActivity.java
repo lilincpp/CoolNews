@@ -42,7 +42,6 @@ public class HomeActivity extends BaseActivity {
         mViewPager.setAdapter(homeViewPagerAdapter);
         mTablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTablayout.setupWithViewPager(mViewPager);
-
     }
 
 

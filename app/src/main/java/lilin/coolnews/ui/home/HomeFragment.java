@@ -25,6 +25,7 @@ import lilin.coolnews.model.LNews;
  * Created by lilin on 2016/8/10.
  */
 public class HomeFragment extends BaseFragment implements HomeContract.View, SwipeRefreshLayout.OnRefreshListener {
+    private static final String TAG = "HomeFragment";
 
     private static final String CHANNEL_NAME_KEY = "channel_name_key";
     @BindView(R.id.rv_news)

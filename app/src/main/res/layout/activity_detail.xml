@@ -12,22 +12,14 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            app:layout_scrollFlags="scroll|enterAlways"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize">
         </android.support.v7.widget.Toolbar>
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:maxLines="2"
-            android:padding="16dp"
-            android:text="广州古建筑玉虚宫屋顶被先，专家称过多破相"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"/>
 
     </android.support.design.widget.AppBarLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_news_content"

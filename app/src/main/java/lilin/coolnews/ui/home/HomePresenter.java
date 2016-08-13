@@ -1,6 +1,7 @@
 package lilin.coolnews.ui.home;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -19,6 +20,7 @@ import lilin.coolnews.utils.RequestUtil;
  * Created by lilin on 2016/8/10.
  */
 public class HomePresenter implements HomeContract.Presenter {
+    private static final String TAG = "HomePresenter";
 
 
     private HomeContract.View mHomeView;
@@ -31,6 +33,7 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void loadNews(Context context, final String channelName) {
         List<NewsModel> newsModels = NewsModel.getNews(channelName);
+//        Log.e(TAG, "loadNews: size->"+newsModels.size() );
         if (newsModels.size() != 0) {
             List<LNews> lNewses = new ArrayList<>();
             for (NewsModel newsModel : newsModels) {
@@ -54,7 +57,12 @@ public class HomePresenter implements HomeContract.Presenter {
 
             @Override
             public void onResponse(String response) {
+                Log.e(TAG, "onResponse: "+response );
                 List<LNews> newses = LContentUtil.read(response);
+                NewsModel newsModel=new NewsModel();
+                newsModel.setmChannelName(channelName);
+                newsModel.setmJson(response);
+                newsModel.save();
                 mHomeView.show(newses);
             }
         }, new Response.ErrorListener() {
