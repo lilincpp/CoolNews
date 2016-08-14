@@ -33,12 +33,12 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void loadNews(Context context, final String channelName) {
         List<NewsModel> newsModels = NewsModel.getNews(channelName);
-//        Log.e(TAG, "loadNews: size->"+newsModels.size() );
+        //        Log.e(TAG, "loadNews: size->"+newsModels.size() );
         if (newsModels.size() != 0) {
             List<LNews> lNewses = new ArrayList<>();
             for (NewsModel newsModel : newsModels) {
                 List<LNews> newses = LContentUtil.read(newsModel.getmJson());
-                lNewses.addAll(newses);
+                lNewses.addAll(0, newses);
             }
             mHomeView.show(lNewses);
         } else {
@@ -52,18 +52,22 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     private void requestNews(Context context, final String channelName) {
-        StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, RequestUtil.getNews(channelName), new Response
-                .Listener<String>() {
+        StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, RequestUtil.getNews(channelName), new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                Log.e(TAG, "onResponse: "+response );
-                List<LNews> newses = LContentUtil.read(response);
-                NewsModel newsModel=new NewsModel();
-                newsModel.setmChannelName(channelName);
-                newsModel.setmJson(response);
-                newsModel.save();
-                mHomeView.show(newses);
+                Log.e(TAG, "onResponse: " + response);
+                if (! NewsModel.isExit(response)) {
+                    List<LNews> newses = LContentUtil.read(response);
+                    NewsModel newsModel = new NewsModel();
+                    newsModel.setmChannelName(channelName);
+                    newsModel.setmJson(response);
+                    newsModel.save();
+                    mHomeView.show(newses);
+                } else {
+                    mHomeView.show(null);
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override

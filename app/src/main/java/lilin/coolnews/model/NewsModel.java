@@ -47,4 +47,34 @@ public class NewsModel extends Model {
     public static List<NewsModel> getNews(String name) {
         return new Select().from(NewsModel.class).where("channel_name=?", name).execute();
     }
+
+    public static boolean isExit(String json) {
+        List<NewsModel> newsModels = new Select().from(NewsModel.class).where("json=?", json).execute();
+        NewsModel newsModel = new NewsModel();
+        newsModel.setmJson(json);
+
+        return newsModels.contains(newsModel);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (! super.equals(o))
+            return false;
+
+        NewsModel newsModel = (NewsModel) o;
+
+        return mJson != null ? mJson.equals(newsModel.mJson) : newsModel.mJson == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (mJson != null ? mJson.hashCode() : 0);
+        return result;
+    }
 }

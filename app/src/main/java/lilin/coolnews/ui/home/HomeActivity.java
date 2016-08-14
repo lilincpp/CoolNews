@@ -6,7 +6,9 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -42,6 +44,18 @@ public class HomeActivity extends BaseActivity {
         mViewPager.setAdapter(homeViewPagerAdapter);
         mTablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         mTablayout.setupWithViewPager(mViewPager);
+
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        list.add("3");
+
+        List<String> temp = new ArrayList<>();
+        temp.add("1");
+        temp.add("2");
+        temp.add("4");
+
+        Log.e(TAG, "one :" + (list.containsAll(temp)));
     }
 
 

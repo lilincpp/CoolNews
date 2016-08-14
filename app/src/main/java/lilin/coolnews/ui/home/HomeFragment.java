@@ -85,7 +85,9 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Swi
 
     @Override
     public void show(List<LNews> newses) {
-        mNewsAdapter.update(newses);
+        if (newses != null) {
+            mNewsAdapter.update(newses);
+        }
         mRvNews.setVisibility(View.VISIBLE);
         mTvTips.setVisibility(View.GONE);
         mPb.setVisibility(View.GONE);
