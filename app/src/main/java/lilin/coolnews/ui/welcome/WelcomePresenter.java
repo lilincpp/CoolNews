@@ -30,7 +30,7 @@ public class WelcomePresenter implements WelcomeContract.Presenter {
     }
 
     @Override
-    public void checkChannel(Context context) {
+    public void checkChannel(final Context context) {
         List<ChannelModel.Channel> channelList = ChannelModel.Channel.getAll();
         if (channelList.size() != 0) {
             mWelcomeView.go();
@@ -49,7 +49,6 @@ public class WelcomePresenter implements WelcomeContract.Presenter {
                 .Listener<String>() {
             @Override
             public void onResponse(final String response) {
-
                 Gson gson = new Gson();
                 ChannelModel channelModel = gson.fromJson(response, ChannelModel.class);
                 Log.e(TAG, "Channel Size:" + channelModel.getShowapi_res_body().getChannelList().size());

@@ -33,7 +33,6 @@ public class HomePresenter implements HomeContract.Presenter {
     @Override
     public void loadNews(Context context, final String channelName) {
         List<NewsModel> newsModels = NewsModel.getNews(channelName);
-        //        Log.e(TAG, "loadNews: size->"+newsModels.size() );
         if (newsModels.size() != 0) {
             List<LNews> lNewses = new ArrayList<>();
             for (NewsModel newsModel : newsModels) {

@@ -1,14 +1,15 @@
 package lilin.coolnews.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by lilin on 2016/8/11.
- * <p/>
+ * <p>
  * 新闻类
  */
-public class LNews implements Serializable{
+public class LNews implements Serializable {
 
     private String mTitle;
     private String mDesc;
@@ -17,7 +18,7 @@ public class LNews implements Serializable{
     private String mChannelId;
     private String mNewsLink;
     private String mSource;
-    private List<LContent> mContents;
+    private List<LContent> mContents = new ArrayList<>();
 
 
     public String getmTitle() {

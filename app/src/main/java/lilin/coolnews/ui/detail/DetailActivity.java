@@ -45,14 +45,8 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
         ButterKnife.bind(this);
 
         mLNews = (LNews) getIntent().getSerializableExtra("news");
-//        Log.e(TAG, "onCreate: " + mLNews.toString());
-//        Log.e(TAG, "======================================");
-//
-//        for (LContent lContent : mLNews.getmContents()) {
-//            Log.e(TAG, "onCreate: " + lContent.toString());
-//        }
 
-        mDetailAdapter = new DetailAdapter(this,mLNews );
+        mDetailAdapter = new DetailAdapter(this, mLNews);
         mRvNewsContent.setLayoutManager(new LinearLayoutManager(this));
         mRvNewsContent.setAdapter(mDetailAdapter);
 

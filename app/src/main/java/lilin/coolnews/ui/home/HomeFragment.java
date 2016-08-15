@@ -1,5 +1,7 @@
 package lilin.coolnews.ui.home;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -20,11 +22,13 @@ import butterknife.ButterKnife;
 import lilin.coolnews.Base.BaseFragment;
 import lilin.coolnews.R;
 import lilin.coolnews.model.LNews;
+import lilin.coolnews.ui.detail.DetailActivity;
 
 /**
  * Created by lilin on 2016/8/10.
  */
-public class HomeFragment extends BaseFragment implements HomeContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class HomeFragment extends BaseFragment implements HomeContract.View, SwipeRefreshLayout.OnRefreshListener, NewsAdapter
+        .LOnClickListener {
     private static final String TAG = "HomeFragment";
 
     private static final String CHANNEL_NAME_KEY = "channel_name_key";
@@ -47,8 +51,13 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Swi
         Bundle bundle = new Bundle();
         bundle.putString(CHANNEL_NAME_KEY, channelName);
         homeFragment.setArguments(bundle);
-        new HomePresenter(homeFragment);
         return homeFragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        new HomePresenter(this);
     }
 
     @Nullable
@@ -62,12 +71,13 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Swi
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mChannelName = getArguments().getString(CHANNEL_NAME_KEY);
-        mNewsAdapter = new NewsAdapter(new ArrayList<LNews>());
+        mNewsAdapter = new NewsAdapter(new ArrayList<LNews>(), this);
         mRvNews.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRvNews.setAdapter(mNewsAdapter);
 
         mRefreshlayout.setOnRefreshListener(this);
         mRefreshlayout.setColorSchemeResources(R.color.colorPrimary);
+
     }
 
     @Override
@@ -90,7 +100,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Swi
         }
         mRvNews.setVisibility(View.VISIBLE);
         mTvTips.setVisibility(View.GONE);
-        mPb.setVisibility(View.GONE);
+        mPb.hide();
         if (mRefreshlayout.isRefreshing()) {
             mRefreshlayout.setRefreshing(false);
             Snackbar.make(mRefreshlayout, R.string.home_refreshed, Snackbar.LENGTH_SHORT).show();
@@ -102,7 +112,7 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Swi
         if (mNewsAdapter.getItemCount() == 0) {
             mTvTips.setText(getString(R.string.home_error_load));
             mTvTips.setVisibility(View.VISIBLE);
-            mPb.setVisibility(View.GONE);
+            mPb.hide();
         } else {
             Snackbar.make(mRefreshlayout, R.string.home_error_load, Snackbar.LENGTH_SHORT).show();
         }
@@ -118,5 +128,18 @@ public class HomeFragment extends BaseFragment implements HomeContract.View, Swi
         if (mHomePresenter != null) {
             mHomePresenter.refresh(getActivity(), mChannelName);
         }
+    }
+
+    @Override
+    public void onClick(int position, LNews lNews) {
+        HomeActivity homeActivity = (HomeActivity) getActivity();
+        if (homeActivity.mIsTablet) {
+            homeActivity.updateDetail(lNews);
+        } else {
+            Intent intent = new Intent(getActivity(), DetailActivity.class);
+            intent.putExtra("news", lNews);
+            getActivity().startActivity(intent);
+        }
+
     }
 }

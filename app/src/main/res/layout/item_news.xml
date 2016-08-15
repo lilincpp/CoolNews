@@ -5,8 +5,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_click"
-                android:layout_marginTop="8dp"
-                android:elevation="2dp"
+                android:layout_marginTop="2dp"
                 android:padding="8dp">
 
     <LinearLayout
@@ -26,6 +25,7 @@
 
         <ImageButton
             android:id="@+id/ibtn_menu"
+            android:visibility="invisible"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="32dp"
             android:layout_height="32dp"
