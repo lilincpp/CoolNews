@@ -5,6 +5,7 @@
               android:layout_height="wrap_content">
 
     <TextView
+        android:fontFamily="sans-serif-condensed"
         android:layout_marginTop="16dp"
         android:id="@+id/tv"
         android:padding="16dp"

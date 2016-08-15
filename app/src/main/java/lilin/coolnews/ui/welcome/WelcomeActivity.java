@@ -57,6 +57,8 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
     @Override
     public void go() {
         mPb.hide();
+//        RoundedBitmapDrawable roundedBitmapDrawable= RoundedBitmapDrawableFactory.create(getResources(),bitmap);
+//        roundedBitmapDrawable.setCircular(true);
         mTip.setVisibility(View.GONE);
         startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
         finish();
