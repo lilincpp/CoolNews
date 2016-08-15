@@ -1,14 +1,15 @@
 package lilin.coolnews.ui.welcome;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.lang.reflect.Modifier;
 import java.util.List;
 
 import lilin.coolnews.model.ChannelModel;
@@ -49,9 +50,13 @@ public class WelcomePresenter implements WelcomeContract.Presenter {
                 .Listener<String>() {
             @Override
             public void onResponse(final String response) {
-                Gson gson = new Gson();
+                //不能直接Gson gson=new Gson();
+                // 6.0 会出现SecurityException
+                //原因是ActiveAndroid+Gson引起的。目前来说应该算是个BUG
+                GsonBuilder builder = new GsonBuilder();
+                builder.excludeFieldsWithModifiers(Modifier.FINAL, Modifier.TRANSIENT, Modifier.STATIC);
+                Gson gson = builder.create();
                 ChannelModel channelModel = gson.fromJson(response, ChannelModel.class);
-                Log.e(TAG, "Channel Size:" + channelModel.getShowapi_res_body().getChannelList().size());
                 for (ChannelModel.Channel channel : channelModel.getShowapi_res_body().getChannelList()) {
                     channel.save();
                 }

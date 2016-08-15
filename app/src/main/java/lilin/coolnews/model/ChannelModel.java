@@ -12,6 +12,10 @@ import java.util.List;
  */
 public class ChannelModel {
 
+    public ChannelModel(){
+
+    }
+
     int showapi_res_code;
     String showapi_res_error;
     Body showapi_res_body;
