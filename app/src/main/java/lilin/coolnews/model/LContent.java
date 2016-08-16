@@ -15,10 +15,28 @@ public class LContent implements Serializable{
 
     private TYPE mType;
     private String mValue;
+    private int mImgWidth;
+    private int mImgHeight;
 
     public LContent(TYPE mType, String mValue) {
         this.mType = mType;
         this.mValue = mValue;
+    }
+
+    public int getmImgWidth() {
+        return mImgWidth;
+    }
+
+    public void setmImgWidth(int mImgWidth) {
+        this.mImgWidth = mImgWidth;
+    }
+
+    public int getmImgHeight() {
+        return mImgHeight;
+    }
+
+    public void setmImgHeight(int mImgHeight) {
+        this.mImgHeight = mImgHeight;
     }
 
     public TYPE getmType() {

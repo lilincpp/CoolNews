@@ -51,12 +51,13 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     private void requestNews(Context context, final String channelName) {
-        StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, RequestUtil.getNews(channelName), new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(StringRequest.Method.GET, RequestUtil.getNews(channelName), new Response
+                .Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Log.e(TAG, "onResponse: " + response);
-                if (! NewsModel.isExit(response)) {
+                if (!NewsModel.isExit(response)) {
                     List<LNews> newses = LContentUtil.read(response);
                     NewsModel newsModel = new NewsModel();
                     newsModel.setmChannelName(channelName);

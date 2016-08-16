@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.ContentLoadingProgressBar;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -14,12 +13,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lilin.coolnews.R;
+import lilin.coolnews.base.BaseActivity;
 import lilin.coolnews.ui.home.HomeActivity;
 
 /**
  * Created by lilin on 2016/8/10.
  */
-public class WelcomeActivity extends AppCompatActivity implements WelcomeContract.View {
+public class WelcomeActivity extends BaseActivity implements WelcomeContract.View {
 
     @BindView(R.id.pb)
     ContentLoadingProgressBar mPb;
@@ -39,11 +39,18 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
 
         new WelcomePresenter(this);
 
+        mPb.onAttachedToWindow();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
         if (mWelPresenter != null) {
             mWelPresenter.checkChannel(this);
         }
@@ -57,8 +64,6 @@ public class WelcomeActivity extends AppCompatActivity implements WelcomeContrac
     @Override
     public void go() {
         mPb.hide();
-//        RoundedBitmapDrawable roundedBitmapDrawable= RoundedBitmapDrawableFactory.create(getResources(),bitmap);
-//        roundedBitmapDrawable.setCircular(true);
         mTip.setVisibility(View.GONE);
         startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
         finish();

@@ -26,7 +26,8 @@
             >
         </activity>
 
-        <activity android:name=".ui.welcome.WelcomeActivity">
+        <activity android:name=".ui.welcome.WelcomeActivity"
+            android:theme="@style/AppLaucher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

@@ -67,6 +67,7 @@ public class DetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof TextViewHolder) {
@@ -74,6 +75,7 @@ public class DetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             textViewHolder.tv.setText(mLContents.get(position - 1).getmValue());
         } else if (holder instanceof ImgViewHolder) {
             ImgViewHolder imgViewHolder = (ImgViewHolder) holder;
+//            imgViewHolder.img.setMinimumHeight(mLContents.get(position - 1).getmImgHeight());
             Picasso.with(mContext).load(mLContents.get(position - 1).getmValue())
                     .error(R.drawable.ic_load_error)
                     .placeholder(R.drawable.ic_default)

@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="tab.unselected">#ADADAD</color>
+    <color name="tab.unselected">#88c3ff</color>
 
     <color name="fragment.background">#EAEEF4</color>
     <color name="news.gray">#919DA5</color>

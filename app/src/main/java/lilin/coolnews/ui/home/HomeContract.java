@@ -4,8 +4,8 @@ import android.content.Context;
 
 import java.util.List;
 
-import lilin.coolnews.Base.BasePresenter;
-import lilin.coolnews.Base.BaseView;
+import lilin.coolnews.base.BasePresenter;
+import lilin.coolnews.base.BaseView;
 import lilin.coolnews.model.LNews;
 
 /**

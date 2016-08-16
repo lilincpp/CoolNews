@@ -1,4 +1,4 @@
-package lilin.coolnews.Base;
+package lilin.coolnews.base;
 
 /**
  * Created by lilin on 2016/8/9.

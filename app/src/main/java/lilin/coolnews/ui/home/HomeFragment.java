@@ -19,8 +19,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import lilin.coolnews.Base.BaseFragment;
 import lilin.coolnews.R;
+import lilin.coolnews.base.BaseFragment;
 import lilin.coolnews.model.LNews;
 import lilin.coolnews.ui.detail.DetailActivity;
 

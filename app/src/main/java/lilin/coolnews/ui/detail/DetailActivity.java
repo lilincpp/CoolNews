@@ -9,8 +9,8 @@ import android.view.View;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import lilin.coolnews.Base.BaseActivity;
 import lilin.coolnews.R;
+import lilin.coolnews.base.BaseActivity;
 import lilin.coolnews.model.LNews;
 
 /**
@@ -32,6 +32,7 @@ public class DetailActivity extends BaseActivity implements DetailContract.View 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

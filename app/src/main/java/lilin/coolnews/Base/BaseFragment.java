@@ -1,4 +1,4 @@
-package lilin.coolnews.Base;
+package lilin.coolnews.base;
 
 import android.support.v4.app.Fragment;
 

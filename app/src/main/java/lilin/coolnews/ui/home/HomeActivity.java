@@ -1,19 +1,17 @@
 package lilin.coolnews.ui.home;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import lilin.coolnews.Base.BaseActivity;
 import lilin.coolnews.R;
+import lilin.coolnews.base.BaseActivity;
 import lilin.coolnews.model.ChannelModel;
 import lilin.coolnews.model.LNews;
 import lilin.coolnews.model.NewsModel;
@@ -39,10 +37,10 @@ public class HomeActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle(getString(R.string.app_name));
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar.setTitleTextColor(Color.WHITE);
+//        toolbar.setTitle(getString(R.string.app_name));
+//        setSupportActionBar(toolbar);
 
         List<ChannelModel.Channel> channelList = ChannelModel.Channel.getAll();
         HomeViewPagerAdapter homeViewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(), channelList);

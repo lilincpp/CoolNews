@@ -18,8 +18,33 @@ public class LNews implements Serializable {
     private String mChannelId;
     private String mNewsLink;
     private String mSource;
+    private String mFristImg;
+    private int mFristImgWidth,mFristImgHeight;
     private List<LContent> mContents = new ArrayList<>();
 
+    public String getmFristImg() {
+        return mFristImg;
+    }
+
+    public void setmFristImg(String mFristImg) {
+        this.mFristImg = mFristImg;
+    }
+
+    public int getmFristImgWidth() {
+        return mFristImgWidth;
+    }
+
+    public void setmFristImgWidth(int mFristImgWidth) {
+        this.mFristImgWidth = mFristImgWidth;
+    }
+
+    public int getmFristImgHeight() {
+        return mFristImgHeight;
+    }
+
+    public void setmFristImgHeight(int mFristImgHeight) {
+        this.mFristImgHeight = mFristImgHeight;
+    }
 
     public String getmTitle() {
         return mTitle;

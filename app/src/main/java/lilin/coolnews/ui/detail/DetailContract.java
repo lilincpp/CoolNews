@@ -1,7 +1,7 @@
 package lilin.coolnews.ui.detail;
 
-import lilin.coolnews.Base.BasePresenter;
-import lilin.coolnews.Base.BaseView;
+import lilin.coolnews.base.BasePresenter;
+import lilin.coolnews.base.BaseView;
 
 /**
  * Created by lilin on 2016/8/11.

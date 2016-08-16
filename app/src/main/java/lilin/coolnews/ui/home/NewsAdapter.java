@@ -1,12 +1,16 @@
 package lilin.coolnews.ui.home;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -29,9 +33,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> im
     }
 
 
-    public NewsAdapter(List<LNews> newses,LOnClickListener lOnClickListener) {
+    public NewsAdapter(List<LNews> newses, LOnClickListener lOnClickListener) {
         mNewses = newses;
-        mLOnClickListener=lOnClickListener;
+        mLOnClickListener = lOnClickListener;
     }
 
     public void update(List<LNews> newses) {
@@ -55,10 +59,18 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> im
     @Override
     public void onBindViewHolder(final NewsAdapter.ViewHolder holder, int position) {
         holder.tvSource.setText(mRecyclerView.getResources().getString(R.string.item_from) + "\t" + mNewses.get(position).getmSource());
-        holder.tvTitle.setText(mNewses.get(position).getmTitle());
-        holder.tvContent.setText(mNewses.get(position).getmDesc());
-
-
+        String title = (TextUtils.isEmpty(mNewses.get(position).getmTitle())) ? "服务器错误:获取标题失败" : mNewses.get(position).getmTitle();
+        String desc = (TextUtils.isEmpty(mNewses.get(position).getmDesc())) ? "服务器错误:获取内容介绍失败" : mNewses.get(position).getmDesc();
+        holder.tvTitle.setText(title);
+        holder.tvContent.setText(desc);
+        final String imgUrl = mNewses.get(position).getmFristImg();
+        if (imgUrl != null) {
+            holder.iv.setVisibility(View.VISIBLE);
+//            holder.iv.setMinimumHeight(mNewses.get(position).getmFristImgHeight());
+            Picasso.with(mRecyclerView.getContext()).load(imgUrl).into(holder.iv);
+        } else {
+            holder.iv.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -70,6 +82,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> im
         TextView tvSource, tvTitle, tvContent;
         RelativeLayout lay;
         ImageButton ibtn;
+        ImageView iv;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -78,6 +91,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> im
             tvContent = (TextView) itemView.findViewById(R.id.tv_content);
             lay = (RelativeLayout) itemView.findViewById(R.id.lay);
             ibtn = (ImageButton) itemView.findViewById(R.id.ibtn_menu);
+            iv = (ImageView) itemView.findViewById(R.id.iv);
         }
     }
 

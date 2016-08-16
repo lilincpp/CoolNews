@@ -6,7 +6,7 @@
 
     <android.support.v4.widget.ContentLoadingProgressBar
         android:id="@+id/pb"
-        style="@style/NewsProgressbar"
+        style="@style/WelcomeProgressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
@@ -17,6 +17,8 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/welcome.reload"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
         android:visibility="gone"/>
 
     <TextView
@@ -26,6 +28,8 @@
         android:layout_below="@+id/pb"
         android:gravity="center"
         android:padding="16dp"
-        android:text="@string/welcome.loading"/>
+        android:text="@string/welcome.loading"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"/>
 
 </RelativeLayout>
