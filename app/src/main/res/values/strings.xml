@@ -5,7 +5,7 @@
     <string name="welcome.erro_load">加载失败</string>
     <string name="welcome.reload">重新加载</string>
 
-    <string name="item.from">来源:</string>
+    <string name="item.from">新闻来源:</string>
 
     <string name="home.error_load">加载失败</string>
     <string name="home.load_success">加载成功</string>

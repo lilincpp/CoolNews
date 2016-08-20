@@ -4,9 +4,9 @@
                 android:id="@+id/lay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:elevation="2dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/selector_click"
+                android:elevation="2dp"
                 android:padding="16dp">
 
     <LinearLayout
@@ -35,21 +35,21 @@
 
     <lilin.coolnews.view.MyImgeView
         android:id="@+id/iv"
-        android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_below="@+id/lay_1"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
+        android:scaleType="fitXY"
         />
 
     <TextView
         android:id="@+id/tv_title"
-        android:layout_marginTop="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="4dp"
         android:ellipsize="end"
         android:maxEms="18"
         android:maxLines="1"
@@ -62,9 +62,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_title"
+        android:layout_marginTop="4dp"
         android:ellipsize="end"
         android:maxLines="3"
-        android:layout_marginTop="4dp"
         android:textColor="@color/news.content"
         android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_content"
+        android:textColor="@color/news.gray"
+        android:textSize="12sp"/>
 </RelativeLayout>

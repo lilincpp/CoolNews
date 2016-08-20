@@ -6,7 +6,7 @@
     </style>
 
     <style name="WelcomeProgressbar" parent="Base.Widget.AppCompat.ProgressBar">
-        <item name="android:indeterminateTint">@color/colorAccent</item>
+        <item name="android:indeterminateTint">@android:color/white</item>
         <item name="android:indeterminateTintMode">src_atop</item>
     </style>
 </resources>

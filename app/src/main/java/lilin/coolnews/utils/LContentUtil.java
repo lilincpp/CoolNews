@@ -29,7 +29,7 @@ public class LContentUtil {
             JSONObject pagebean = showapi_res_body.getJSONObject("pagebean");
             JSONArray contentlist = pagebean.getJSONArray("contentlist");
             //解析需要的新闻信息
-            for (int i = 0; i < contentlist.length(); ++i) {
+            for (int i = 0; i < contentlist.length(); ++ i) {
                 JSONObject jsonObject = contentlist.getJSONObject(i);
                 LNews news = new LNews();
                 //解析新闻的一些概述、属性等
@@ -41,10 +41,10 @@ public class LContentUtil {
                 news.setmNewsLink(jsonObject.getString("link"));
                 news.setmSource(jsonObject.getString("source"));
                 //解析新闻的具体内容
-                if (!jsonObject.isNull("allList")) {
+                if (! jsonObject.isNull("allList")) {
                     List<LContent> lContents = new ArrayList<>();
                     JSONArray allList = jsonObject.getJSONArray("allList");
-                    for (int j = 0; j < allList.length(); ++j) {
+                    for (int j = 0; j < allList.length(); ++ j) {
                         LContent lContent;
                         if (allList.get(j) instanceof JSONObject) {
                             //图片
@@ -69,11 +69,35 @@ public class LContentUtil {
                     news.setmFristImgHeight(imgObject.getInt("height"));
                 }
 
+                //解析新闻的标签
+                if (! jsonObject.isNull("sentiment_tag")) {
+                    JSONObject jsonObject1 = jsonObject.getJSONObject("sentiment_tag");
+                    news.setmNewsTag(jsonObject1.getString("name"));
+                }
+
                 lNewses.add(news);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return lNewses;
+    }
+
+    public static String parseTime(final long newsTime) {
+        long nowTime = System.currentTimeMillis();
+        long result = nowTime - newsTime;
+
+        if (result < 1000 * 60) {
+            return result / 1000 + "秒前";
+        } else if (result >= 1000 * 60 && result < 1000 * 60 * 60) {
+            return result / (1000 * 60) + "分钟前";
+        } else if (result >= 1000 * 60 * 60 && result < 1000 * 60 * 60 * 24) {
+            return result / (1000 * 60 * 60) + "小时前";
+        } else if (result >= 1000 * 60 * 60 * 24 && result < 1000 * 60 * 60 * 24 * 30.0) {
+            return result / (1000 * 60 * 60 * 24) + "天前";
+        } else {
+            return result / 1000 / 60 / 60 / 24 / 30 + "月前";
+        }
+
     }
 }

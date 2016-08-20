@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Created by lilin on 2016/8/11.
- * <p>
+ * <p/>
  * 新闻类
  */
 public class LNews implements Serializable {
@@ -19,8 +19,17 @@ public class LNews implements Serializable {
     private String mNewsLink;
     private String mSource;
     private String mFristImg;
-    private int mFristImgWidth,mFristImgHeight;
+    private String mNewsTag;
+    private int mFristImgWidth, mFristImgHeight;
     private List<LContent> mContents = new ArrayList<>();
+
+    public String getmNewsTag() {
+        return mNewsTag;
+    }
+
+    public void setmNewsTag(String mNewsTag) {
+        this.mNewsTag = mNewsTag;
+    }
 
     public String getmFristImg() {
         return mFristImg;
@@ -112,8 +121,10 @@ public class LNews implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
 
         LNews news = (LNews) o;
 
