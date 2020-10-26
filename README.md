@@ -1,6 +1,10 @@
 # CoolNews
 
+### Tips
+
 该项目不在维护！
+
+### View
 
 新闻类应用，尽量遵循Material Design
 <p>
