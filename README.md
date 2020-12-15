@@ -1,6 +1,6 @@
 # CoolNews
 
-### Tips1234512
+### Tips
 
 该项目不在维护
 
